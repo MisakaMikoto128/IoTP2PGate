@@ -17,7 +17,13 @@ git clone https://github.com/MisakaMikoto128/IoTP2PGate.git
 cd IoTP2PGate
 make
 ```
+或者
 
+```bash
+git clone https://gitee.com/liuyuanlin6445/IoTP2PGate.git
+cd IoTP2PGate
+make
+```
 3.使用：
 
 ```bash
