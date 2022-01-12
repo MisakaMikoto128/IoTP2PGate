@@ -16,17 +16,6 @@ static void usage(const char *proc)
 {
     printf("Please use %s [ip] [port]\n", proc);
 }
-/*
-check whether client is accessable 
-*/
-static bool check_client_accessable(int sock)
-{
-    struct tcp_info info;
-    int len = sizeof(info);
-    getsockopt(sock, IPPROTO_TCP, TCP_INFO, &info, (socklen_t *)&len);
-
-    return (info.tcpi_state == TCP_ESTABLISHED);
-}
 
 /*
 建立TCP连接后的接收线程
