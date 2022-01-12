@@ -9,13 +9,14 @@ FLAG = -c
 
 parameter_o=-o
 target=iotp2pgate
-LIB=-pthread
+LIB=-pthread 
+CVERSION=-std=c99
 DEFS = -DEBUG       #宏定义
 INCLUDE=
  
 #“$^”代表依赖文件，“$@”代表目标文件
 $(target):$(OBJS)
-	$(CC) $^ $(parameter_o) $@ $(LIB)
+	$(CC) $^ $(parameter_o) $@ $(LIB) $(CVERSION)
 
 .PHONY:
 clean:
