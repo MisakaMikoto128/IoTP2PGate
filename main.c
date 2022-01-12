@@ -84,6 +84,19 @@ int tcp_sever_loop(int sock)
 int main(int argc, char **argv)
 {
 
+//if have no any argument input,them warnning
+  if (argc == 1)
+  {
+    printf("Please input the port number\n");
+    //show the usage in command line
+    printf("1. The first argument is the port number,it is necessary\n");
+    printf("2. The second argument is the ip address,it is optional\n");
+    printf("3. You can use it like this:\"p2pgate 8888\",in this case "
+           "progame will have no debugging information to display,"
+           "and if you set the second like this:\"p2pgate 8888 debug\","
+           "then you will see the debugging information\n");
+    return 0;
+  }
   //get port from command line
   int port = atoi(argv[1]);
 
@@ -111,19 +124,7 @@ int main(int argc, char **argv)
   pthread_detach(id0);
   pthread_detach(id1);
   debug_print("create thread success\n");
-  //if have no any argument input,them warnning
-  if (argc == 1)
-  {
-    printf("Please input the port number\n");
-    //show the usage in command line
-    printf("1. The first argument is the port number,it is necessary\n");
-    printf("2. The second argument is the ip address,it is optional\n");
-    printf("3. You can use it like this:\"p2pgate 8888\",in this case "
-           "progame will have no debugging information to display,"
-           "and if you set the second like this:\"p2pgate 8888 debug\","
-           "then you will see the debugging information\n");
-    return 0;
-  }
+  
 
   int sock = INVALID_FD;
   int init_flag = tcp_socket_sever_init("0.0.0.0", port, &sock);
