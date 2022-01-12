@@ -23,7 +23,7 @@ int tcp_socket_sever_init(const char *ip, int port, int *psock)
   local.sin_port = htons(port);
   local.sin_addr.s_addr = inet_addr(ip);
   int allow_reuse_port = 1;
-  setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (const void *)&allow_reuse_port, sizeof(allow_reuse_port));
+  setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const void *)&allow_reuse_port, sizeof(allow_reuse_port));
   //2.bind
   if (bind(sock, (struct sockaddr *)&local, sizeof(local)) < 0)
   {
@@ -111,6 +111,7 @@ int main(int argc, char **argv)
     printf("release mode\n");
     set_debug_off();
   }
+  printf("Press Ctrl+C to exit\n");
 
   //初始化fd_list
   init_fd_list();
