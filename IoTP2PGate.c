@@ -33,12 +33,13 @@ void *thread_rev(void *arg)
             debug_print("check_client_accessable success,mfd:[%d],another_fd:[%d]\n", fd_list[fd_id], fd_list[another_id]);
             memset(buf, '\0', sizeof(buf));
             //read data from client
+
             ssize_t len = read(fd_list[fd_id], buf, sizeof(buf) - 1);
             if (len > 0)
             {
 
                 buf[len] = '\0';
-                debug_print("client say : %s\n", buf);
+                debug_print("client say : %s\n", &buf[0]);
                 fflush(stdout);
                 //write data to another client
                 if (isSocketFDValid(fd_list[another_id]))

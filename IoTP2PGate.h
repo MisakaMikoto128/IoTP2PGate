@@ -28,15 +28,6 @@
 extern int fd_list[FD_LIST_SIZE];
 void init_fd_list();
 
-
-
-#define SOCKET_CAN_READ_AND_WRITE 0x01
-#define SOCKET_NOT_ACCESSABLE 0x00
-
-#define SOCKET_CAN_READ 0x01
-#define SOCKET_CAN_WRITE 0x10
-#define SOCKET_NOT_ACCESSABLE 0x00
-
 void *thread_rev(void *arg);
 void *thread_rev1(void *arg);
 #define isSocketFDValid(sock) ((sock) > 0)

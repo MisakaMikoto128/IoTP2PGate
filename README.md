@@ -2,7 +2,7 @@
 ## 项目地址
 [IoTP2PGate](https://github.com/MisakaMikoto128/IoTP2PGate)
 ## 描述
-&emsp;&emsp;为了解决物联网通信模块无法方便的与手机或其他物联网设备快速实现点对点的通信，IoTP2PGate应运而生。IoTP2PGate之主要用于简单的开发验证，毕竟写它的时候为的是毕业设计使用方便。
+&emsp;&emsp;为了解决物联网通信模块无法方便的与手机或其他物联网设备快速实现点对点的通信，IoTP2PGate应运而生。IoTP2PGate之主要用于简单的开发验证，毕竟写它的时候为的是毕业设计使用方便。<font color=red>不具有安全性，仅供个人使用</font>
 
 ## 特性
 1. 支持且只支持两个物联网设备点对点通信。
