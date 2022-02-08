@@ -24,15 +24,14 @@ void *thread_rev(void *arg)
 {
     debug_print("create a new receiving thread,%d\n", *(int *)arg);
     int fd_id = *(int *)arg;
-    int another_id = (fd_id + 1) % 2;
-    char buf[1024];
+    char buf[1024 * 2];
     while (true)
     {
         if (isSocketFDValid(fd_list[fd_id]))
         {
-            debug_print("check_client_accessable success,mfd:[%d],another_fd:[%d]\n", fd_list[fd_id], fd_list[another_id]);
+            debug_print("check_client_accessable success,mfd:[%d]\n", fd_list[fd_id]);
             memset(buf, '\0', sizeof(buf));
-            //read data from client
+            // read data from client
 
             ssize_t len = read(fd_list[fd_id], buf, sizeof(buf) - 1);
             if (len > 0)
@@ -41,23 +40,27 @@ void *thread_rev(void *arg)
                 buf[len] = '\0';
                 debug_print("client say : %s\n", &buf[0]);
                 fflush(stdout);
-                //write data to another client
-                if (isSocketFDValid(fd_list[another_id]))
+
+                // write data to another client
+                for (size_t i = 0; i < FD_LIST_SIZE; i++)
                 {
-                    int ret = write(fd_list[another_id], buf, strlen(buf));
-                    if (ret == -1)
+                    if (i != fd_id && isSocketFDValid(fd_list[i]))
                     {
-                        debug_print("write error\n");
+                        int ret = write(fd_list[i], buf, strlen(buf));
+                        if (ret == -1)
+                        {
+                            debug_print("write error,fd id %d\n",i);
+                        }
                     }
                 }
             }
             else if (len == 0 && errno != EINTR)
             {
-                debug_print("Client has been closed!\n");
+                debug_print("Client has been closed!Id is :%d\n",fd_id);
                 close(fd_list[fd_id]);
                 fd_list[fd_id] = INVALID_FD;
                 printf("fd_list[%d] = %d\n", fd_id, fd_list[fd_id]);
-                debug_print("check_client_accessable success,mfd:[%d],another_fd:[%d]\n", fd_list[fd_id], fd_list[another_id]);
+                debug_print("check_client_accessable success,mfd:[%d]\n", fd_list[fd_id]);
             }
         }
     }

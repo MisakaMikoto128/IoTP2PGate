@@ -23,13 +23,12 @@
 #include <netinet/tcp.h>
 #include <stdbool.h>
 #include <errno.h>
-#define FD_LIST_SIZE 2
-#define MAX_TCP_CONNECTIONS 2
+#define FD_LIST_SIZE 100
+#define MAX_TCP_CONNECTIONS 100
 extern int fd_list[FD_LIST_SIZE];
 void init_fd_list();
 
 void *thread_rev(void *arg);
-void *thread_rev1(void *arg);
 #define isSocketFDValid(sock) ((sock) > 0)
 //file descriptor flag
 #define INVALID_FD -1
