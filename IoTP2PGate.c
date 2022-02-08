@@ -44,7 +44,7 @@ void *thread_rev(void *arg)
                 // write data to another client
                 for (size_t i = 0; i < FD_LIST_SIZE; i++)
                 {
-                    if (i != fd_id && isSocketFDValid(fd_list[i]))
+                    if (i != fd_id && fd_list[i] != INVALID_FD && isSocketFDValid(fd_list[i]))
                     {
                         int ret = write(fd_list[i], buf, strlen(buf));
                         if (ret == -1)
