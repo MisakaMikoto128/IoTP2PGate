@@ -6,7 +6,7 @@ OBJS=$(patsubst %.c,%.o,$(SRC)) #patsubst字符串转换函数，将SRC中的所
 #代表使用的编译器，例如本次使用的是gcc，使用其它编译器时，只需更改此选项即可
 CC = gcc
 FLAG = -c
-CFLAGS=-std=c99
+CFLAGS=-std=gnu99
 
 parameter_o=-o
 target=iotp2pgate
